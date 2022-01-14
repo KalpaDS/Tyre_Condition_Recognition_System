@@ -5,4 +5,13 @@
 {% block content %}
     <h2>Home Page</h2>
     <p>Welcome back, {{ username }}!</p>
+    <form class="form-signin" method=post enctype=multipart/form-data>
+        {% if name == "normal" %}
+            <h1 class="h1 mb-3 font-weight-normal"> Your Tire is in Good Condition! </h1>
+        {% else %}
+            <h5 class="h1 mb-3 font-weight-normal"> Your Tire got {{ name }} Attention.!</h5>
+            <h3 class="h5 mb-3 font-weight-normal"> {{ description }} </h3>
+        {% endif %}
+        <p class="mt-5 mb-3 text-muted">Powered by PyTorch, Flask, and Bootstrap.</p>
+    </form>
 {% endblock %}
