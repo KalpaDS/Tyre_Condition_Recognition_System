@@ -1,5 +1,5 @@
+venv
 .idea
 dataset/
-venv/
 __pycache__
 .git
