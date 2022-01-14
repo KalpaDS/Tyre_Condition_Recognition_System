@@ -1,3 +1,9 @@
+import io
+import string
+import torch
+import torch.nn as nn
+import torchvision.transforms as transforms
+from torchvision import models
 from flask import Flask, render_template, request, redirect, url_for, session
 from flask_mysqldb import MySQL
 import MySQLdb.cursors
@@ -75,3 +81,12 @@ def home():
     if 'loggedin' in session:
         return render_template('home.html', username=session['username'])
     return redirect(url_for('login'))
+
+
+model = models.resnet18()
+num_inftr = model.fc.in_features
+model.fc = nn.Linear(num_inftr, 4)
+model.load_state_dict(torch.load('./fix_resnet18.pth'))
+model.eval()
+
+class_names = ['cracked', 'normal']
